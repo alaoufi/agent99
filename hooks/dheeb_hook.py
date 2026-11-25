@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ذيب (DHEEB) — خطّاف عام واحد لكل الجلسات: سياق البدء، حارس الأدوات، مراقبة الاستهلاك.
+"""ذيبان (DHEEB) — خطّاف عام واحد لكل الجلسات: سياق البدء، حارس الأدوات، مراقبة الاستهلاك.
 
 يُستدعى من ~/.claude/settings.json بالحدث في أول وسيط:
   dheeb_hook.py session|pre|post|stop
@@ -104,12 +104,12 @@ def on_session(d, pol):
     log("session", sid=sid, cwd=d.get("cwd"), source=d.get("source"))
     mem = os.path.join(STATE, "MEMORY.md")
     ctx = [
-        "ذيب (DHEEB) مفعّل في هذه الجلسة على مستوى المستخدم:",
+        "ذيبان (DHEEB) مفعّل في هذه الجلسة على مستوى المستخدم:",
         "- اللغة: اكتب للمالك بالعربية دائمًا (الردود والأسئلة ورسائل التقدم والملخصات)، إلا الكود والأوامر وما تشترطه الأدوات.",
         "- الاقتصاد أولًا: اقرأ الجزء اللازم فقط (Grep/Glob/Read بحدود)، لا تكرر الأمر نفسه، لا تُعِد تثبيت المثبَّت، ووكيل فرعي فقط للعمل الموازي الحقيقي.",
         "- الحارس قد يمنع أوامر هدر معروفة ويذكر السبب؛ اتبع البديل المقترح بدل الالتفاف عليه.",
-        "- لا تتدخل في جلسات أو فروع أو موارد مشاريع أخرى؛ قواعد CLAUDE.md للمشروع تتقدّم على ذيب.",
-        "- ذاكرة ذيب وأدواته في المستودع الخاص alaoufi/agent99؛ لا تفتحه إلا إذا كان الطلب يخص ذيب أو التنسيق بين المشاريع/الجلسات/كودكس.",
+        "- لا تتدخل في جلسات أو فروع أو موارد مشاريع أخرى؛ قواعد CLAUDE.md للمشروع تتقدّم على ذيبان.",
+        "- ذاكرة ذيبان وأدواته في المستودع الخاص alaoufi/agent99؛ لا تفتحه إلا إذا كان الطلب يخص ذيبان أو التنسيق بين المشاريع/الجلسات/كودكس.",
         "- التنسيق: Issues في alaoufi/agent99 بعنوان يبدأ [للمشروع] أو [codex] أو [all]، وsend_message بين جلسات Claude السحابية. التفاصيل: مهارة /dheeb.",
     ]
     if os.path.exists(mem):
@@ -124,18 +124,18 @@ def on_pre(d, pol):
         for pat, why in BLOCK:
             if re.search(pat, cmd):
                 log("block", sid=d.get("session_id"), cmd=cmd[:200])
-                return out("PreToolUse", decision="deny", reason="ذيب: " + why)
+                return out("PreToolUse", decision="deny", reason="ذيبان: " + why)
         m = re.match(r"\s*cat\s+([^\s|;&<>]+)\s*$", cmd)
         if m and file_lines(os.path.join(d.get("cwd") or "", os.path.expanduser(m.group(1)))) > pol["big_file_lines"]:
             log("block", sid=d.get("session_id"), cmd=cmd[:200])
             return out("PreToolUse", decision="deny",
-                       reason=f"ذيب: الملف أكبر من {pol['big_file_lines']} سطر؛ اقرأ الجزء اللازم (sed -n 'A,Bp' أو Read مع offset/limit أو Grep).")
+                       reason=f"ذيبان: الملف أكبر من {pol['big_file_lines']} سطر؛ اقرأ الجزء اللازم (sed -n 'A,Bp' أو Read مع offset/limit أو Grep).")
         for pat, why in ADVISE:
             if re.search(pat, cmd):
-                return out("PreToolUse", context="ذيب: " + why)
+                return out("PreToolUse", context="ذيبان: " + why)
     elif tool == "Read" and not ti.get("limit"):
         if file_lines(ti.get("file_path", "")) > pol["big_file_lines"]:
-            return out("PreToolUse", context="ذيب: ملف كبير؛ إن كنت تحتاج جزءًا فاقرأه بـ offset/limit أو ابحث بـ Grep.")
+            return out("PreToolUse", context="ذيبان: ملف كبير؛ إن كنت تحتاج جزءًا فاقرأه بـ offset/limit أو ابحث بـ Grep.")
 
 
 def on_post(d, pol):
@@ -150,14 +150,14 @@ def on_post(d, pol):
         key = hashlib.sha1(json.dumps([tool, ti], sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:12]
         c = st["cmds"][key] = st["cmds"].get(key, 0) + 1
         if c == pol["repeat_warn"]:
-            notes.append(f"ذيب: نفّذت الاستدعاء نفسه ({tool}) {c} مرات بلا تغيير؛ غيّر المقاربة أو توقف واسأل بدل التكرار.")
+            notes.append(f"ذيبان: نفّذت الاستدعاء نفسه ({tool}) {c} مرات بلا تغيير؛ غيّر المقاربة أو توقف واسأل بدل التكرار.")
             log("repeat", sid=sid, tool=tool)
     if st["n"] % pol["check_every"] == 0 and d.get("transcript_path"):
         u = usage(d["transcript_path"])
         level = int(u["all"] >= pol["warn_tokens"] * 2 ** st["warned"] or u["out"] >= pol["warn_output"] * 2 ** st["warned"])
         if level:
             st["warned"] += 1
-            notes.append(f"ذيب: استهلاك الجلسة مرتفع (إجمالي {u['all']:,} رمز، إخراج {u['out']:,}، {st['n']} أداة). "
+            notes.append(f"ذيبان: استهلاك الجلسة مرتفع (إجمالي {u['all']:,} رمز، إخراج {u['out']:,}، {st['n']} أداة). "
                          "اختصر: لا تعِد قراءة ما قرأته، اجمع الاستدعاءات المستقلة، وإن طال العمل فاحفظ التقدم واقترح إكماله في جلسة جديدة.")
             log("usage_warn", sid=sid, **u)
     save(sp, st)

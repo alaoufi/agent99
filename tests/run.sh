@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# اختبارات ذيب: وحدة (مدخلات خطاف مصطنعة) + تكامل حقيقي عبر claude -p (يتخطى إن لم يتوفر claude).
+# اختبارات ذيبان: وحدة (مدخلات خطاف مصطنعة) + تكامل حقيقي عبر claude -p (يتخطى إن لم يتوفر claude).
 set -uo pipefail
 R="$(cd "$(dirname "$0")/.." && pwd)"; H="$R/hooks/dheeb_hook.py"
 T="$(mktemp -d)"; export DHEEB_STATE="$T/state"; pass=0; fail=0
@@ -7,7 +7,7 @@ ok(){ if eval "$2"; then echo "✓ $1"; pass=$((pass+1)); else echo "✗ $1"; fa
 run(){ echo "$2" | python3 "$H" "$1"; }
 
 o=$(run session '{"session_id":"s1","cwd":"/x","source":"startup"}')
-ok "SessionStart يحقن السياق" '[[ "$o" == *additionalContext*ذيب* ]]'
+ok "SessionStart يحقن السياق" '[[ "$o" == *additionalContext*ذيبان* ]]'
 o=$(run pre '{"session_id":"s1","tool_name":"Bash","tool_input":{"command":"npx playwright install chromium"}}')
 ok "منع playwright install" '[[ "$o" == *\"deny\"* ]]'
 o=$(run pre '{"session_id":"s1","tool_name":"Bash","tool_input":{"command":"ls -la"}}')
@@ -19,7 +19,7 @@ o=$(run pre '{"session_id":"s1","tool_name":"Bash","tool_input":{"command":"grep
 ok "نصيحة grep -r دون منع" '[[ "$o" == *additionalContext* && "$o" != *deny* ]]'
 for i in 1 2; do run post '{"session_id":"s1","tool_name":"Bash","tool_input":{"command":"git status"}}' >/dev/null; done
 o=$(run post '{"session_id":"s1","tool_name":"Bash","tool_input":{"command":"git status"}}')
-ok "تنبيه التكرار في المرة الثالثة" '[[ "$o" == *3* && "$o" == *ذيب* ]]'
+ok "تنبيه التكرار في المرة الثالثة" '[[ "$o" == *3* && "$o" == *ذيبان* ]]'
 # سجل مصطنع: رسالة مكررة بالمعرّف نفسه تُحسب مرة واحدة
 printf '%s\n' '{"message":{"id":"m1","usage":{"input_tokens":10,"output_tokens":5}}}' \
               '{"message":{"id":"m1","usage":{"input_tokens":10,"output_tokens":5}}}' \
@@ -37,7 +37,7 @@ CLAUDE_CONFIG_DIR="$T/cl" DHEEB_STATE="$T/st2" bash "$R/install.sh" >/dev/null
 ok "التثبيت مكرر بلا ازدواج خطافات" '[ "$(grep -c dheeb_hook "$T/cl/settings.json")" = 4 ]'
 ok "--check ينجح" 'CLAUDE_CONFIG_DIR="$T/cl" DHEEB_STATE="$T/st2" bash "$R/install.sh" --check >/dev/null'
 
-# تكامل حقيقي: جلسة claude -p بخطافات ذيب فقط (إعدادات مستقلة، دون لمس ~/.claude)
+# تكامل حقيقي: جلسة claude -p بخطافات ذيبان فقط (إعدادات مستقلة، دون لمس ~/.claude)
 if command -v claude >/dev/null && [ "${DHEEB_SKIP_E2E:-}" != 1 ]; then
   export DHEEB_STATE="$T/e2e"
   cat > "$T/s.json" <<J
@@ -47,11 +47,11 @@ if command -v claude >/dev/null && [ "${DHEEB_SKIP_E2E:-}" != 1 ]; then
  "Stop":[{"matcher":"","hooks":[{"type":"command","command":"python3 $H stop"}]}]}}
 J
   o=$(cd "$T" && timeout 180 claude -p --settings "$T/s.json" --allowedTools Bash --max-turns 4 \
-     "شغّل بالأداة Bash الأمر: npx playwright install chromium . ثم أجب بسطر واحد: هل منعك أحد؟ واذكر اسم من منعك. ثم: هل تعرف وكيلًا اسمه ذيب من سياق الجلسة؟ نعم/لا" 2>&1)
+     "شغّل بالأداة Bash الأمر: npx playwright install chromium . ثم أجب بسطر واحد: هل منعك أحد؟ واذكر اسم من منعك. ثم: هل تعرف وكيلًا اسمه ذيبان من سياق الجلسة؟ نعم/لا" 2>&1)
   echo "  رد الجلسة: $(echo "$o" | tail -3 | tr '\n' ' ')"
   ok "e2e: الخطاف منع الأمر فعليًا" 'grep -q "\"block\"" "$DHEEB_STATE/events.jsonl"'
   ok "e2e: SessionStart أطلق" 'grep -q "\"session\"" "$DHEEB_STATE/events.jsonl"'
   ok "e2e: Stop سجّل الاستهلاك" '[ -s "$DHEEB_STATE/usage.jsonl" ]'
-  ok "e2e: النموذج رأى سياق ذيب" '[[ "$o" == *ذيب* ]]'
+  ok "e2e: النموذج رأى سياق ذيبان" '[[ "$o" == *ذيبان* ]]'
 fi
 echo "النتيجة: $pass نجح، $fail فشل"; rm -rf "$T"; [ $fail = 0 ]

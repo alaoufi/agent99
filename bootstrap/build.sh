@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# يولّد bootstrap/setup-script.sh: سكربت إعداد بيئة Default يثبّت ذيب في كل حاوية سحابية جديدة.
+# يولّد bootstrap/setup-script.sh: سكربت إعداد بيئة Default يثبّت ذيبان في كل حاوية سحابية جديدة.
 # السكربت يفضّل نسخة المستودع المرفقة بالجلسة (./dheeb) إن وُجدت، وإلا يفك حزمة مضمّنة من هذا الـcommit.
 set -euo pipefail
 cd "$(dirname "$0")/.."

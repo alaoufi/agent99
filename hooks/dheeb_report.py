@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""تقرير ذيب المحلي: الاستهلاك والأحداث المسجلة في ~/.dheeb."""
+"""تقرير ذيبان المحلي: الاستهلاك والأحداث المسجلة في ~/.dheeb."""
 import json, os, collections
 ST = os.environ.get("DHEEB_STATE", os.path.expanduser("~/.dheeb"))
 def rows(name):
