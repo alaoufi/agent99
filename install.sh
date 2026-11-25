@@ -20,7 +20,7 @@ rm -rf "$CL/skills/dheeb" "$CL/agents/dheeb.md"
 mkdir -p "$ST/bin" "$ST/sessions" "$CL/agents" "$CL/skills/dheeban"
 install -m 0755 "$SRC/hooks/dheeb_hook.py" "$SRC/hooks/dheeb_report.py" "$ST/bin/"
 install -m 0644 "$SRC/agents/dheeban.md" "$CL/agents/dheeban.md"
-cp -R "$SRC/skills/dheeban/." "$CL/skills/dheeban/"
+for s in "$SRC"/skills/*/; do n=$(basename "$s"); mkdir -p "$CL/skills/$n"; cp -R "$s." "$CL/skills/$n/"; done
 [ -f "$SRC/memory/MEMORY.md" ] && install -m 0644 "$SRC/memory/MEMORY.md" "$ST/MEMORY.md"
 [ -f "$SRC/policy.json" ] && [ ! -f "$ST/policy.json" ] && install -m 0644 "$SRC/policy.json" "$ST/policy.json"
 echo "$SRC" > "$ST/source"
