@@ -21,7 +21,7 @@
 1. **جلسات Claude Code السحابية (الجوال والويب):** سكربت الإعداد لبيئة **Default** = `bootstrap/setup-script.sh`
    (يُولَّد بـ `bash bootstrap/build.sh`). يعمل قبل بدء Claude في كل حاوية جديدة: يثبت من `./dheeb` إن كان
    المستودع مرفقًا بالجلسة، وإلا من حزمة مضمّنة من آخر commit. لا يثبت أي حزمة ولا يفشل الإقلاع.
-2. **Claude Code على جهاز (اختياري):** `/plugin marketplace add alaoufi/dheeb` ثم `/plugin install dheeb@dheeb`،
+2. **Claude Code على جهاز (اختياري):** `/plugin marketplace add alaoufi/agent99` ثم `/plugin install dheeb@dheeb`،
    أو `git clone` ثم `bash install.sh`. اختر طريقة واحدة كي لا تتكرر الخطافات.
 
 ## التحكم من الجوال (بلا لابتوب، بلا اشتراك إضافي)
