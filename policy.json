@@ -1,0 +1,1 @@
+{"repeat_warn": 3, "check_every": 25, "warn_tokens": 3000000, "warn_output": 60000, "big_file_lines": 1500}

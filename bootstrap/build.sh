@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# يولّد bootstrap/setup-script.sh: سكربت إعداد بيئة Default يثبّت ذيب في كل حاوية سحابية جديدة.
+# السكربت يفضّل نسخة المستودع المرفقة بالجلسة (./dheeb) إن وُجدت، وإلا يفك حزمة مضمّنة من هذا الـcommit.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+FILES="install.sh policy.json hooks agents skills memory/MEMORY.md"
+B64=$(tar --sort=name --mtime=2026-01-01 --owner=0 --group=0 -czf - $FILES | base64 -w 190)
+SUM=$(printf '%s' "$B64" | tr -d '\n' | base64 -d | sha256sum | cut -c1-16)
+{
+cat <<H
+# DHEEB bootstrap $(git rev-parse --short HEAD 2>/dev/null || echo dev) sha256:$SUM — يُولَّد من alaoufi/dheeb/bootstrap/build.sh
+# يثبّت ذيب في ~/.claude للمستخدم (خطافات+وكيل+مهارة). لا يثبت حزمًا، ولا يفشل الإقلاع أبدًا.
+if [ -f dheeb/install.sh ]; then bash dheeb/install.sh || true; exit 0; fi
+D=/opt/dheeb; rm -rf "\$D"; mkdir -p "\$D"
+base64 -d > /tmp/dheeb.tgz <<'B64' || exit 0
+H
+echo "$B64"
+cat <<'T'
+B64
+tar -xzf /tmp/dheeb.tgz -C "$D" && bash "$D/install.sh" || true
+rm -f /tmp/dheeb.tgz
+T
+} > bootstrap/setup-script.sh
+wc -l -L bootstrap/setup-script.sh
