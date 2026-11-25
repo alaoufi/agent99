@@ -1,4 +1,4 @@
-# DHEEB bootstrap dev sha256:c2c83c51e21f8e89 — يُولَّد من alaoufi/dheeb/bootstrap/build.sh
+# DHEEB bootstrap 9efab9e sha256:c2c83c51e21f8e89 — يُولَّد من alaoufi/dheeb/bootstrap/build.sh
 # يثبّت ذيب في ~/.claude للمستخدم (خطافات+وكيل+مهارة). لا يثبت حزمًا، ولا يفشل الإقلاع أبدًا.
 if [ -f dheeb/install.sh ]; then bash dheeb/install.sh || true; exit 0; fi
 D=/opt/dheeb; rm -rf "$D"; mkdir -p "$D"
