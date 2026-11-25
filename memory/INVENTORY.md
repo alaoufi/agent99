@@ -21,3 +21,11 @@
 ## توصيات بلا تثبيت
 1. إن لم تُستخدم Twilio: عطّل إضافة twilio-developer-kit من claude.ai (توفّر ~60 وصف مهارة في كل جلسة + محاولة MCP فاشلة).
 2. فوّض الأعمال الروتينية لوكلاء بنموذج أخف (كما في teachabs/routine وdheeb).
+
+## صندوق أدوات ذيبان (2026-11-25، مجرَّب، مجاني) — مهارة `dheeban-toolbox`
+Lighthouse (سرعة/SEO/وصولية)، autocannon وartillery (تحمل)، axe عبر Playwright (وصولية)، npm audit + secretlint + semgrep بقواعد محلية (أمان).
+محجوب: semgrep.dev (مكتبة القواعد العامة).
+## إضافات مقترحة للحساب (مجانية، من Anthropic أو مجانية المصدر) — تُفعَّل من بطاقة claude.ai
+Design، Data، Finance، Marketing، frontend-design، SearchFit SEO. كل إضافة تزيد أوصاف المهارات في كل جلسة، فلا تُفعَّل إلا ما يُستخدم.
+## موصلات بطبقة مجانية (تُربط في المشروع أولًا)
+PostHog (سلوك العملاء)، Sentry (الأخطاء). مدفوعة/تجارية لا تُقترح: Supermetrics، Windsor.ai، Trackian، Datarails.
