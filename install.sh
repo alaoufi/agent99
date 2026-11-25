@@ -8,7 +8,7 @@ ST="${DHEEB_STATE:-$HOME/.dheeb}"
 
 if [ "${1:-}" = "--check" ]; then
   ok=1
-  for f in "$ST/bin/dheeb_hook.py" "$CL/agents/dheeb.md" "$CL/skills/dheeb/SKILL.md"; do
+  for f in "$ST/bin/dheeb_hook.py" "$CL/agents/dheeban.md" "$CL/skills/dheeban/SKILL.md"; do
     [ -f "$f" ] && echo "✓ $f" || { echo "✗ $f"; ok=0; }
   done
   grep -q dheeb_hook "$CL/settings.json" 2>/dev/null && echo "✓ الخطافات في $CL/settings.json" || { echo "✗ الخطافات"; ok=0; }
@@ -16,10 +16,11 @@ if [ "${1:-}" = "--check" ]; then
   exit 0
 fi
 
-mkdir -p "$ST/bin" "$ST/sessions" "$CL/agents" "$CL/skills/dheeb"
+rm -rf "$CL/skills/dheeb" "$CL/agents/dheeb.md"
+mkdir -p "$ST/bin" "$ST/sessions" "$CL/agents" "$CL/skills/dheeban"
 install -m 0755 "$SRC/hooks/dheeb_hook.py" "$SRC/hooks/dheeb_report.py" "$ST/bin/"
-install -m 0644 "$SRC/agents/dheeb.md" "$CL/agents/dheeb.md"
-cp -R "$SRC/skills/dheeb/." "$CL/skills/dheeb/"
+install -m 0644 "$SRC/agents/dheeban.md" "$CL/agents/dheeban.md"
+cp -R "$SRC/skills/dheeban/." "$CL/skills/dheeban/"
 [ -f "$SRC/memory/MEMORY.md" ] && install -m 0644 "$SRC/memory/MEMORY.md" "$ST/MEMORY.md"
 [ -f "$SRC/policy.json" ] && [ ! -f "$ST/policy.json" ] && install -m 0644 "$SRC/policy.json" "$ST/policy.json"
 echo "$SRC" > "$ST/source"

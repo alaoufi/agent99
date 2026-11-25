@@ -9,8 +9,8 @@
 | حارس الأدوات | `… pre` | **يمنع** أوامر هدر معروفة (`playwright install`، إعادة تثبيت Claude/Chromium، `cat` لملف ضخم) مع البديل، و**ينصح** عند `grep -r` و`find /`. |
 | مراقب الاستهلاك | `… post` | ينبّه عند تكرار الاستدعاء نفسه 3 مرات، ويقرأ استهلاك الجلسة من سجلها كل 25 أداة وينبّه عند تجاوز الحد (يتضاعف الحد بعد كل تنبيه). |
 | سجل الاستهلاك | `… stop` | يكتب لقطة لكل جلسة في `~/.dheeb/usage.jsonl`. التقرير: `python3 ~/.dheeb/bin/dheeb_report.py`. |
-| الوكيل | `agents/dheeb.md` | وكيل فرعي (نموذج sonnet الأخف) للجرد والتقارير والتنسيق. |
-| المهارة | `skills/dheeb` | `/dheeb`: حالة، تقرير، تنسيق مع جلسة أخرى أو كودكس. |
+| الوكيل | `agents/dheeban.md` | وكيل فرعي (نموذج sonnet الأخف) للجرد والتقارير والتنسيق. |
+| المهارة | `skills/dheeb` | `/dheeban`: حالة، تقرير، تنسيق مع جلسة أخرى أو كودكس. |
 | الذاكرة | `memory/MEMORY.md` | حقائق وقرارات دائمة. |
 | التنسيق | `coordination/PROTOCOL.md` | Issues هنا بعناوين `[الوجهة]` + `send_message` بين جلسات Claude السحابية. |
 
@@ -19,7 +19,7 @@
 
 ## كيف يصل إلى كل جلسة
 1. **جلسات Claude Code السحابية (الجوال والويب):** سكربت الإعداد لبيئة **Default** = `bootstrap/setup-script.sh`
-   (يُولَّد بـ `bash bootstrap/build.sh`). يعمل قبل بدء Claude في كل حاوية جديدة: يثبت من `./dheeb` إن كان
+   (يُولَّد بـ `bash bootstrap/build.sh`). يعمل قبل بدء Claude في كل حاوية جديدة: يثبت من `./agent99` إن كان
    المستودع مرفقًا بالجلسة، وإلا من حزمة مضمّنة من آخر commit. لا يثبت أي حزمة ولا يفشل الإقلاع.
 2. **Claude Code على جهاز (اختياري):** `/plugin marketplace add alaoufi/agent99` ثم `/plugin install dheeb@dheeb`،
    أو `git clone` ثم `bash install.sh`. اختر طريقة واحدة كي لا تتكرر الخطافات.
