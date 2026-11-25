@@ -3,7 +3,7 @@
 # السكربت يفضّل نسخة المستودع المرفقة بالجلسة (./dheeb) إن وُجدت، وإلا يفك حزمة مضمّنة من هذا الـcommit.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-FILES="install.sh policy.json hooks agents skills memory/MEMORY.md"
+FILES="install.sh policy.json hooks agents skills memory/MEMORY.md bootstrap/external.sh"
 B64=$(tar --sort=name --mtime=2026-01-01 --owner=0 --group=0 -czf - $FILES | base64 -w 190)
 SUM=$(printf '%s' "$B64" | tr -d '\n' | base64 -d | sha256sum | cut -c1-16)
 {

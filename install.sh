@@ -24,6 +24,7 @@ for s in "$SRC"/skills/*/; do n=$(basename "$s"); mkdir -p "$CL/skills/$n"; cp -
 [ -f "$SRC/memory/MEMORY.md" ] && install -m 0644 "$SRC/memory/MEMORY.md" "$ST/MEMORY.md"
 [ -f "$SRC/policy.json" ] && [ ! -f "$ST/policy.json" ] && install -m 0644 "$SRC/policy.json" "$ST/policy.json"
 echo "$SRC" > "$ST/source"
+[ "${DHEEB_NO_EXTERNAL:-}" = 1 ] || bash "$SRC/bootstrap/external.sh" || true
 
 # دمج الخطافات في إعدادات المستخدم دون حذف أي خطاف آخر (يُزال فقط إدخال ذيبان القديم ثم يُضاف الجديد)
 python3 - "$CL/settings.json" "$ST/bin/dheeb_hook.py" <<'PY'
