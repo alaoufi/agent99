@@ -1,0 +1,21 @@
+الإجمالي (غير مضغوط): 1024KB | طلبات: 31
+حسب النوع: document=103KB stylesheet=185KB image=7KB script=579KB font=120KB fetch=30KB
+== أكبر 8 موارد
+224KB script https://jdtna.sa/_next/static/chunks/3jn_x8ihwq16e.js
+165KB script https://jdtna.sa/_next/static/chunks/0c1ad7rcpjghx.js
+114KB stylesheet https://jdtna.sa/_next/static/chunks/2j80midr4p03a.css
+103KB document https://jdtna.sa/producers
+70KB stylesheet https://jdtna.sa/_next/static/chunks/1qn-6-ip2ik2n.css
+62KB script https://jdtna.sa/_next/static/chunks/0yeapzppw0vbc.js
+46KB font https://jdtna.sa/fonts/amiri-core.woff2
+44KB font https://jdtna.sa/fonts/noto-sans-arabic-core.woff2
+== الخطوط
+46KB https://jdtna.sa/fonts/amiri-core.woff2
+44KB https://jdtna.sa/fonts/noto-sans-arabic-core.woff2
+31KB https://jdtna.sa/fonts/noto-sans-arabic-latin.woff2
+== صور
+عدد: 2 | بلا alt: 0 | بلا width/height: 0 | أكبر من اللازم>2x: 1
+صور غير حديثة (png/jpg/jpeg>50KB): لا
+== بلا ضغط (>10KB نصي)
+== أخطاء الكونسول: 0 
+== طلبات فاشلة (>=400): لا

@@ -1,0 +1,22 @@
+الإجمالي (غير مضغوط): 1193KB | طلبات: 42
+حسب النوع: font=63KB image=195KB script=641KB stylesheet=113KB document=161KB fetch=21KB
+== أكبر 8 موارد
+228KB script https://trbhh.sa/_next/static/chunks/2k3165v68m4ck.js
+152KB document https://trbhh.sa/ads/3639
+132KB script https://trbhh.sa/_next/static/chunks/3z-515d1xbp10.js
+113KB stylesheet https://trbhh.sa/_next/static/chunks/3u_5bae5x5aqx.css
+85KB image https://trbhh.sa/logo-header.png
+67KB script https://trbhh.sa/_next/static/chunks/42uuj4uuq_419.js
+64KB image https://eauthenticate.saudibusiness.gov.sa/EAuthSealApi/assets/sbc-logo.svg
+61KB script https://trbhh.sa/_next/static/chunks/0u9crhklc4h1x.js
+== الخطوط
+33KB https://trbhh.sa/_next/static/media/d41831e24743a3c1-s.p.08tn9snzkmifr.woff2
+30KB https://trbhh.sa/_next/static/media/9ff27b8a0a8f3dc0-s.p.40_3w74kn95bo.woff2
+0KB https://eauthenticate.saudibusiness.gov.sa/EAuthSealApi/assets/fonts/IBMPlexSansArabic-Bold.ttf
+0KB https://eauthenticate.saudibusiness.gov.sa/EAuthSealApi/assets/fonts/IBMPlexSansArabic-Regular.ttf
+== صور
+عدد: 8 | بلا alt: 0 | بلا width/height: 7 | أكبر من اللازم>2x: 1
+صور غير حديثة (png/jpg/jpeg>50KB): 85KB https://trbhh.sa/logo-header.png
+== بلا ضغط (>10KB نصي)
+== أخطاء الكونسول: 0 
+== طلبات فاشلة (>=400): لا

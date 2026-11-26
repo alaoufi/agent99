@@ -1,0 +1,4 @@
+serious	color-contrast	1 عنصر	Elements must meet minimum color contrast ratio thresholds
+serious	label-content-name-mismatch	1 عنصر	Elements must have their visible text as part of their accessible name
+moderate	region	1 عنصر	All page content should be contained by landmarks
+المجموع: 3 نوع مخالفة

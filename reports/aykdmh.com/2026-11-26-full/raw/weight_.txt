@@ -1,0 +1,20 @@
+الإجمالي (غير مضغوط): 4790KB | طلبات: 66
+حسب النوع: document=32KB script=1331KB stylesheet=141KB font=80KB fetch=1KB xhr=53KB image=3151KB
+== أكبر 8 موارد
+2136KB image https://aykdmh.com/api/media/1139625b-84c1-4b28-9b14-a1be2771349f
+813KB script https://aykdmh.com/assets/index-DOna5eHg.js
+585KB image https://aykdmh.com/api/media/6235551c-2923-4183-9caa-7b5492ad24a6
+269KB image https://aykdmh.com/api/media/1b35341f-0b94-4305-94ee-d7b8de871ea3
+176KB script https://aykdmh.com/assets/react-vendor-DVOkN-Cj.js
+149KB script https://aykdmh.com/assets/en-LQ9cK8Jv.js
+104KB stylesheet https://aykdmh.com/assets/index-Cku5msJ-.css
+84KB image https://aykdmh.com/api/media/ad2ee3b8-4309-47e2-a092-1cdb2d2d6875
+== الخطوط
+47KB https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2
+33KB https://fonts.gstatic.com/s/cairo/v31/SLXVc1nY6HkvangtZmpQdkhzfH5lkSscRiyS.woff2
+== صور
+عدد: 7 | بلا alt: 0 | بلا width/height: 5 | أكبر من اللازم>2x: 6
+صور غير حديثة (png/jpg/jpeg>50KB): لا
+== بلا ضغط (>10KB نصي)
+== أخطاء الكونسول: 0 
+== طلبات فاشلة (>=400): لا

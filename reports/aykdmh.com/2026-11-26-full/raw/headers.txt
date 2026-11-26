@@ -1,0 +1,22 @@
+HTTP/2 200 
+== ترويسات الأمان (✓ موجودة / ✗ مفقودة)
+✓ strict-transport-security: max-age=31536000; includeSubDomains
+✓ content-security-policy: default-src 'self'; script-src 'self'; worker-src 'self'; style-src 'self' 'unsafe-in
+✓ x-content-type-options: nosniff
+✓ x-frame-options: DENY
+✓ referrer-policy: strict-origin-when-cross-origin
+✓ permissions-policy: camera=(self), geolocation=(self), microphone=(self)
+✓ cross-origin-opener-policy: same-origin
+✓ cross-origin-resource-policy: same-origin
+== تسريب معلومات (يجب ألا تظهر)
+لا شيء
+== كوكيز
+== HSTS preload/includeSubDomains
+includeSubDomains ✓
+== شهادة SSL (تنبيه: من حاوية ذيبان تُعترض الشهادة بوكيل الخروج، فإن ظهر issuer=Anthropic فالنتيجة لا تخص الموقع؛ افحصها من الخادم أو GitHub Actions)
+issuer=O = Anthropic, CN = Egress Gateway SDS Issuing CA (production)
+subject=CN = aykdmh.com
+notBefore=Nov 26 15:31:32 2026 GMT
+notAfter=Dec 26 15:32:32 2026 GMT
+== إعادة توجيه HTTP→HTTPS
+308 -> https://aykdmh.com/
