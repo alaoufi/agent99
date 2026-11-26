@@ -1,0 +1,20 @@
+// وزن الصفحة والخطوط والصور وأخطاء الكونسول (قراءة فقط). الاستعمال: node weight.cjs URL
+const { execSync } = require('child_process'); const path = require('path');
+const { chromium } = require(path.join(execSync('npm root -g').toString().trim(), 'playwright'));
+(async () => { const px = process.env.HTTPS_PROXY; const b = await chromium.launch(px ? { proxy: { server: px } } : {});
+  const p = await (await b.newContext({ viewport: { width: 390, height: 844 } })).newPage(); const res = []; const errs = [];
+  p.on('response', async r => { try { const buf = await r.body(); res.push({ u: r.url(), t: r.request().resourceType(), s: buf.length, st: r.status(), cc: r.headers()['cache-control'] || '', ce: r.headers()['content-encoding'] || '' }); } catch {} });
+  p.on('console', m => m.type() === 'error' && errs.push(m.text().slice(0, 120)));
+  await p.goto(process.argv[2], { waitUntil: 'networkidle', timeout: 60000 });
+  const imgs = await p.$$eval('img', is => is.map(i => ({ src: i.currentSrc || i.src, nw: i.naturalWidth, w: i.clientWidth, alt: i.hasAttribute('alt'), lazy: i.loading, dim: !!(i.getAttribute('width') && i.getAttribute('height')) })));
+  const kb = n => (n / 1024).toFixed(0) + 'KB'; const by = {};
+  for (const r of res) by[r.t] = (by[r.t] || 0) + r.s;
+  console.log('الإجمالي (غير مضغوط):', kb(res.reduce((a, r) => a + r.s, 0)), '| طلبات:', res.length);
+  console.log('حسب النوع:', Object.entries(by).map(([k, v]) => `${k}=${kb(v)}`).join(' '));
+  console.log('== أكبر 8 موارد'); res.sort((a, b) => b.s - a.s).slice(0, 8).forEach(r => console.log(kb(r.s), r.t, r.u.slice(0, 100)));
+  console.log('== الخطوط'); res.filter(r => r.t === 'font').forEach(r => console.log(kb(r.s), r.u.slice(0, 100)));
+  console.log('== صور'); console.log('عدد:', imgs.length, '| بلا alt:', imgs.filter(i => !i.alt).length, '| بلا width/height:', imgs.filter(i => !i.dim).length, '| أكبر من اللازم>2x:', imgs.filter(i => i.w && i.nw > i.w * 2).length);
+  console.log('صور غير حديثة (png/jpg/jpeg>50KB):', res.filter(r => r.t === 'image' && /\.(png|jpe?g)(\?|$)/i.test(r.u) && r.s > 51200).map(r => kb(r.s) + ' ' + r.u.slice(0, 80)).join(' | ') || 'لا');
+  console.log('== بلا ضغط (>10KB نصي)'); res.filter(r => ['script', 'stylesheet', 'document'].includes(r.t) && r.s > 10240 && !r.ce).slice(0, 5).forEach(r => console.log(kb(r.s), r.u.slice(0, 90)));
+  console.log('== أخطاء الكونسول:', errs.length, errs.slice(0, 3).join(' | ')); console.log('== طلبات فاشلة (>=400):', res.filter(r => r.st >= 400).map(r => r.st + ' ' + r.u.slice(0, 80)).join(' | ') || 'لا');
+  await b.close(); })();
