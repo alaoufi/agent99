@@ -1,0 +1,16 @@
+== https://jdtna.sa/
+serious	label-content-name-mismatch	2 عنصر	Elements must have their visible text as part of their accessible name
+moderate	region	1 عنصر	All page content should be contained by landmarks
+المجموع: 2 نوع مخالفة
+== https://jdtna.sa/browse
+serious	label-content-name-mismatch	2 عنصر	Elements must have their visible text as part of their accessible name
+moderate	region	1 عنصر	All page content should be contained by landmarks
+المجموع: 2 نوع مخالفة
+== https://jdtna.sa/producers/family-b2b40812-e356-420f-a843-271d8d17e77d
+serious	label-content-name-mismatch	2 عنصر	Elements must have their visible text as part of their accessible name
+moderate	region	1 عنصر	All page content should be contained by landmarks
+المجموع: 2 نوع مخالفة
+== https://jdtna.sa/akalat/%D9%83%D8%A8%D8%B3%D8%A9
+serious	label-content-name-mismatch	2 عنصر	Elements must have their visible text as part of their accessible name
+moderate	region	1 عنصر	All page content should be contained by landmarks
+المجموع: 2 نوع مخالفة
