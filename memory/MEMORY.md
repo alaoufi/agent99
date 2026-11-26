@@ -11,3 +11,4 @@
 - 2026-11-25: الاستهلاك التراكمي الأعلى (من get_session): Trbhh ≈ 9,469$، aser ≈ 1,648$، aykdmah ≈ 1,187$، teachabs ≈ 194$ — وحد الأسبوع في حالة تحذير. جلسات بسياق يتجاوز 400 ألف رمز تُكلّف كل دور؛ يُفضَّل بدء جلسة جديدة مع ملف تسليم بدل إطالة الجلسة.
 - 2026-11-25: قرار المالك: اسم الوكيل «ذيبان» (المعرّف التقني يبقى dheeb).
 - 2026-11-25: الاسم التقني صار dheeban (الوكيل والمهارة /dheeban)، وما سواه من مسارات (~/.dheeb، dheeb_hook.py) باقٍ.
+- 2026-11-26: مهارات التصميم والتخطيط: ui-ux-pro-max (حساب claude.ai)، writing-plans وtest-driven-development (إضافة superpowers في الحساب)، frontend-design وcanvas-design وMarketing Skills (عبر bootstrap/external.sh).

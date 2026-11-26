@@ -9,4 +9,6 @@ fetch() { # repo sha subdir
 S=$(fetch anthropics/claude-plugins-official 6985b2d88dc08b4a0d202f5f0301f02e360b9cb1 plugins/frontend-design/skills) && cp -R "$S"/. "$CL/skills/"
 # 2) Marketing Skills لـ Corey Haines (MIT) — 53 مهارة تسويق
 S=$(fetch coreyhaines31/marketingskills 8fd2fcade2fd6629026e9dfe6d133b55b36968b9 skills) && cp -R "$S"/. "$CL/skills/"
+# 3) canvas-design من Anthropic (Apache-2.0) — ملصقات وتصاميم ثابتة PNG/PDF للتسويق
+S=$(fetch anthropics/skills e4bb5d960d87126ff3b3a8af1a104b7db67560ba skills/canvas-design) && mkdir -p "$CL/skills/canvas-design" && cp -R "$S"/. "$CL/skills/canvas-design/"
 rm -rf "$T"; echo "ذيبان: المهارات الخارجية ثُبّتت في $CL/skills"
