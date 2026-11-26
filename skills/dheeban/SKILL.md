@@ -29,6 +29,7 @@ description: ذيبان — حالة المنظومة العامة وتقرير 
 | نوع المهمة | الأداة المثبتة |
 |---|---|
 | تصميم واجهة/قالب/صفحة | `frontend-design` + `ui-ux-pro-max` (خطة رموز ← مراجعة ← بناء ← نقد بالصور) |
+| نصوص التصميم (تُعمل مع التصميم لا بعده) | `product-marketing` ← `copywriting` ← `copy-editing` ← `cro`، و`marketing-psychology` عند الحاجة، والطباعة من `ui-ux-pro-max` |
 | ملصق/صورة تسويقية ثابتة | `canvas-design` |
 | خطة تسويق | `marketing-plan` (+ `product-marketing` أولًا) |
 | نصوص تسويقية/صفحات | `copywriting` ثم `copy-editing` |
