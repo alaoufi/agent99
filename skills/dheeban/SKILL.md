@@ -38,6 +38,11 @@ description: ذيبان — حالة المنظومة العامة وتقرير 
 | ميزة أو إصلاح كود | `superpowers:writing-plans` ثم `superpowers:test-driven-development` + `superpowers:systematic-debugging` للأخطاء |
 | مراجعة قبل الدمج | `code-review` + `security-review` |
 | PDF / Word / Excel / عروض | `pdf` / `docx` / `xlsx` / `pptx` |
+| نقد تصميم/وصولية/نصوص واجهة | إضافة `Design` (design-critique، accessibility-review، ux-copy) + `anthropic-skills:ui-styling` |
+| القوائم والجداول والنماذج في الواجهة | `ui-ux-pro-max` (`--domain ux`: forms/navigation) + `frontend-design` |
+| المالية والتقارير المالية | `xlsx` للجداول والحسابات + `dheeban-toolbox` (المالية) + `pricing` للتسعير |
+| الإحصائيات ولوحات المؤشرات | `dataviz` قبل أي رسم بياني + `analytics` (خطة التتبع) + إضافة `Data` إن فُعّلت |
+| أمان الكود | إضافة `Claude Security` إن فُعّلت، وإلا `security-review` + `dheeban-toolbox` |
 | عمل طويل أو موازٍ | جلسة المشروع الخاصة، أو وكيل بنموذج أخف |
 وفي تعليمات أي جلسة أخرى: اذكر الأدوات بالاسم صراحةً.
 **الاستهلاك:** إذا نبّه حارس ذيبان أن الجلسة ثقيلة، احفظ التقدم واقترح نقل العمل لجلسة جديدة مع ملف تسليم.
