@@ -14,3 +14,4 @@
 - 2026-11-26: مهارات التصميم والتخطيط: ui-ux-pro-max (حساب claude.ai)، writing-plans وtest-driven-development (إضافة superpowers في الحساب)، frontend-design وcanvas-design وMarketing Skills (عبر bootstrap/external.sh).
 - 2026-11-26: تطبيق الجوال لا يسمح بالموافقة على تحديث سكربت البيئة (زر رفض فقط: «راجعه على جهاز كمبيوتر»). لا تطلب update_environment من جلسة يديرها المالك من الجوال.
 - 2026-11-26: المالك لا يحب إنشاء مستودعات إضافية. الطريق المعتمد لتحديث الجلسات: إرفاق alaoufi/agent99 بالجلسة الجديدة (السكربت الحالي يشغّل install.sh منه).
+- 2026-11-26: frontend-design مفعّلة كإضافة في حساب claude.ai (أُزيلت من external.sh لمنع التكرار).
