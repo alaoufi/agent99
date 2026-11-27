@@ -27,12 +27,10 @@ jobs:
         run: |
           if hadolint skills/dheeban-toolbox/ci/Dockerfile.sample; then echo "لم يجد مشاكل في عيّنة خاطئة" && exit 1; fi
           echo "hadolint وجد المشاكل المتوقعة"
-      - name: lychee على ملفات Markdown (بلا شبكة)
-        continue-on-error: true
-        run: find . -name '*.md' -not -path './.git/*' -print0 | xargs -0 lychee --no-progress --offline
-      - name: lychee على روابط README الخارجية
-        continue-on-error: true
-        run: lychee --no-progress --max-concurrency 4 README.md skills/dheeban-toolbox/SKILL.md
+      - name: lychee على عيّنة روابط (يجب أن يجد الرابط المكسور المقصود)
+        run: |
+          if lychee --no-progress skills/dheeban-toolbox/ci/links-sample.md; then echo "لم يجد الرابط المكسور" && exit 1; fi
+          echo "lychee وجد الرابط المكسور المتوقع"
       - name: k6 على خادم محلي
         run: |
           python3 -m http.server 8080 --bind 127.0.0.1 >/dev/null 2>&1 &
