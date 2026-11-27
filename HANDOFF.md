@@ -15,6 +15,11 @@
 - مواقع المالك محجوبة من بيئة Default؛ الفحص الحي يعمل من بيئة aykdmh.
 - سكربت بيئة Default قديم؛ تحديثه يحتاج المالك على كمبيوتر.
 
+## 2026-11-27 (session_01NXwKTaXaeUXmKLywdMnaj8)
+- المرحلة 2 من الصندوق تعمل في Actions (run 3 ناجح). نقطة تراجع: backup/2026-11-27-toolbox-phase2.
+- محرك جداول مدرسية OR-Tools CP-SAT 9.15.6755 في skills/dheeban-toolbox/timetable (13 اختبارًا ناجحًا). نقطة تراجع: backup/2026-11-27-before-ortools.
+- **ينتظر المالك:** اسم مشروع النظام الإداري المدرسي، ثم يلصق timetable/PROJECT_PROMPT.md في جلسته الرسمية. وحذف الفرع المدموج dheeban/toolbox-phase2 (بإذنه). وبرومبتا jdtna.sa وaykdmh.com ما زالا عنده.
+
 ## مقترحات لم تُنفّذ
 - أدوات GitHub: Renovate وTrivy وOSV-Scanner وLighthouse CI لكل مشروع (عبر جلسة المشروع وبموافقة المالك).
 - أدوات الخادم: Uptime Kuma أولًا، ثم CrowdSec وBeszel (عبر جلسة الخادم وCOORDINATION.md وبموافقة المالك).
