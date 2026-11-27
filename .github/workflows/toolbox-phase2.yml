@@ -1,0 +1,40 @@
+# تجربة أدوات المرحلة 2 من صندوق ذيبان (Gitleaks وlychee وhadolint وk6) بإصدارات مثبتة ومجاميع SHA-256
+name: toolbox-phase2
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'skills/dheeban-toolbox/**'
+      - '.github/workflows/toolbox-phase2.yml'
+permissions:
+  contents: read
+jobs:
+  trial:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: تنزيل الأدوات والتحقق منها
+        run: bash skills/dheeban-toolbox/scripts/fetch-bins.sh "$RUNNER_TEMP/bin" && echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+      - name: الإصدارات
+        run: gitleaks version; hadolint --version; k6 version; lychee --version
+      - name: Gitleaks على تاريخ git كامل
+        continue-on-error: true
+        run: gitleaks git --redact --no-banner -v .
+      - name: hadolint على عيّنة مقصودة الأخطاء (يجب أن يجد مشاكل)
+        run: |
+          if hadolint skills/dheeban-toolbox/ci/Dockerfile.sample; then echo "لم يجد مشاكل في عيّنة خاطئة" && exit 1; fi
+          echo "hadolint وجد المشاكل المتوقعة"
+      - name: lychee على ملفات Markdown (بلا شبكة)
+        continue-on-error: true
+        run: lychee --no-progress --offline --include-fragments '**/*.md'
+      - name: lychee على رابط خارجي
+        continue-on-error: true
+        run: lychee --no-progress https://example.com
+      - name: k6 على خادم محلي
+        run: |
+          python3 -m http.server 8080 --bind 127.0.0.1 >/dev/null 2>&1 &
+          sleep 1
+          k6 run --quiet skills/dheeban-toolbox/ci/k6-smoke.js

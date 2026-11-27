@@ -9,7 +9,7 @@ description: صندوق أدوات ذيبان المجانية المجرَّب�
 **لا تختبر الإنتاج بالضغط** إلا بإذن المالك: الضغط على موقع حي قد يوقفه. اختبر نسخة محلية أو تجريبية.
 الشبكة: مواقع المالك الخارجية قد تكون محجوبة في بيئة Default؛ شغّل الخادم محليًا واختبر `http://127.0.0.1:PORT`.
 
-**الحالة:** ✅ جُرّب فعليًا في حاوية ذيبان (2026-11-26) · ⏳ مرحلة ثانية: لم يُجرَّب بعد (الملف التنفيذي لم يُشغَّل هنا).
+**الحالة:** ✅ جُرّب فعليًا في حاوية ذيبان (2026-11-26) · 🅰 يعمل في GitHub Actions فقط (المصنِّف يمنع تشغيل الثنائيات المنزّلة في الحاوية) · ⏳ لم يُجرَّب بعد.
 **داخل حاوية ذيبان** يمر Chromium عبر وكيل الخروج (`HTTPS_PROXY`) تلقائيًا في سكربتاتنا؛ Lighthouse الخام يحتاج `--proxy-server=$HTTPS_PROXY` وإلا يفشل بـ NO_NAVSTART. أحيانًا تفشل صفحة بـ NO_NAVSTART: أعد التشغيل.
 **حمل النتائج:** لا تشغّل أداة ثقيلة بالتوازي مع Lighthouse، فالدرجات تتأثر بحمل المعالج.
 
@@ -22,14 +22,14 @@ description: صندوق أدوات ذيبان المجانية المجرَّب�
 | وزن الصفحة والخطوط والصور وأخطاء الكونسول | `node scripts/weight.cjs URL` | ✅ | الحاوية |
 | الروابط المكسورة (SSR) | `python3 scripts/links.py URL [صفحات] [تأخير]` | ✅ بديل خفيف | الحاوية |
 | الروابط المكسورة (SPA/React) | `node scripts/links-spa.cjs URL [صفحات]` | ✅ | الحاوية |
-| الروابط المكسورة (الأداة الكاملة) | `lychee --no-progress URL` (lychee v0.20.1 ثنائي مثبّت) | ⏳ | Actions (`lycheeverse/lychee-action`) / الحاوية |
+| الروابط المكسورة (الأداة الكاملة) | `lychee --no-progress URL` (lychee v0.20.1) | 🅰 Actions | Actions (`lycheeverse/lychee-action`) / الحاوية |
 | ترويسات الأمان وHSTS وإعادة HTTP→HTTPS | `bash scripts/headers.sh URL` | ✅ (فحص شهادة SSL لا يصح من الحاوية: الوكيل يعترضها؛ افحصها من الخادم) | الحاوية / الخادم |
 | كود وتبعيات وملفات غير مستخدمة | `bash scripts/deadcode.sh DIR` (knip 5.61.0 + typescript) | ✅ | الحاوية |
 | حدود حجم الحزمة (JS/CSS) | `npm i -D size-limit@11.2.0 @size-limit/file@11.2.0` ثم `npx size-limit` مع `.size-limit.json` (المُلحق يجب أن يكون في المشروع نفسه) | ✅ | Actions / الحاوية |
 | تقليص الخطوط العربية | `bash scripts/fonts-subset.sh cairo 400 OUT` (Fontsource + fonttools 4.58.4) | ✅ | الحاوية |
-| أسرار في تاريخ git كامل | `gitleaks git --redact -v .` (Gitleaks v8.28.0 ثنائي) | ⏳ (الإصدار يُنزَّل من GitHub Releases؛ لم يُشغَّل). المتاح الآن: `security.sh` (secretlint على الملفات الحالية) | Actions (`gitleaks-action`) / الحاوية |
-| التحمل (ضغط) — **نسخ محلية فقط** | `bash scripts/load.sh URL [اتصالات] [ثوانٍ]` ؛ سيناريوهات: `k6 run test.js` (k6 v1.0.0 ثنائي) | load.sh ✅ · k6 ⏳ | الحاوية (127.0.0.1) |
-| تحليل Dockerfile | `hadolint Dockerfile` (hadolint v2.12.0 ثنائي) | ⏳ | Actions (`hadolint-action`) / الحاوية |
+| أسرار في تاريخ git كامل | `gitleaks git --redact -v .` (Gitleaks v8.28.0) | 🅰 Actions. في الحاوية: `security.sh` (secretlint على الملفات الحالية) | Actions (`gitleaks-action`) / الحاوية |
+| التحمل (ضغط) — **نسخ محلية فقط** | `bash scripts/load.sh URL [اتصالات] [ثوانٍ]` ؛ سيناريوهات: `k6 run ci/k6-smoke.js` (k6 v1.0.0) | load.sh ✅ · k6 🅰 Actions | الحاوية (127.0.0.1) |
+| تحليل Dockerfile | `hadolint Dockerfile` (hadolint v2.12.0) | 🅰 Actions | Actions (`hadolint-action`) / الحاوية |
 | أندرويد (كود المصدر) | `bash scripts/mobsf.sh DIR` (mobsfscan 0.4.5) | ✅ يعمل؛ جُرّب على مقتطف صغير فأعطى INFO فقط، فاختبره على مشروع حقيقي | الحاوية |
 | تقرير تطبيق APK كامل | MobSF (انظر أدوات الخادم) | ⏳ | الخادم |
 | ثغرات الكود | `bash scripts/security.sh DIR` | ✅ | الحاوية |
@@ -69,7 +69,10 @@ description: صندوق أدوات ذيبان المجانية المجرَّب�
 | Trivy | ثغرات التبعيات والحاويات وملفات Dockerfile/IaC |
 | OSV-Scanner | ثغرات التبعيات من قاعدة OSV (يقرأ ملفات lock) |
 | Lighthouse CI | حدود أداء/وصولية تفشل الطلب إن تراجعت (`scripts/lhci.sh` نفسه) |
-| Gitleaks / lychee / hadolint | أسرار، روابط، Dockerfile — انظر الجدول (⏳ حتى تُجرَّب) |
+| Gitleaks / lychee / hadolint / k6 | أسرار، روابط، Dockerfile، تحمل — انسخ خطوات `.github/workflows/toolbox-phase2.yml` من agent99 |
 
-## المرحلة الثانية (لم تُنفَّذ)
-تجربة lychee وGitleaks وhadolint وk6 فعليًا؛ منع المصنِّف تنزيل الثنائيات وتشغيلها في جلسة 2026-11-26، وبقيت موثقة بإصدارات مثبتة دون ادعاء تجربة.
+## المرحلة الثانية: Gitleaks وlychee وhadolint وk6 (2026-11-27)
+- المصدر: GitHub Releases الرسمية بإصدارات مثبتة، والتنزيل يتحقق من SHA-256 في `scripts/fetch-bins.sh` (المجاميع من ملفات المجاميع الرسمية؛ lychee لا ينشر ملفًا فسُجّل مجموعه عند أول تنزيل).
+- التنزيل والتحقق نجحا في الحاوية، لكن **المصنِّف يمنع تشغيل الثنائيات المنزّلة** فيها. فلا تحاول الالتفاف: شغّلها في GitHub Actions.
+- التجربة: سير العمل `.github/workflows/toolbox-phase2.yml` في agent99 (يدوي من تبويب Actions أو عند تعديل الصندوق). يشغّل Gitleaks على تاريخ git، وhadolint على `ci/Dockerfile.sample` (عيّنة مقصودة الأخطاء)، وlychee على ملفات Markdown ورابط خارجي، وk6 بـ `ci/k6-smoke.js` على خادم محلي.
+- لمشروع: انسخ الخطوات اللازمة إلى سير عمل المشروع عبر جلسته الرسمية وبرومبت يلصقه المالك. بدائل جاهزة: `gitleaks/gitleaks-action@v2` و`lycheeverse/lychee-action@v2` و`hadolint/hadolint-action@v3.1.0` و`grafana/setup-k6-action@v1` (ثبّت الإصدار).

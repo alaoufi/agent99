@@ -1,0 +1,7 @@
+# عيّنة مقصودة الأخطاء لتجربة hadolint (لا تُبنى)
+FROM node:latest
+RUN apt-get update && apt-get install -y curl
+ADD . /app
+WORKDIR /app
+RUN npm install
+CMD npm start
