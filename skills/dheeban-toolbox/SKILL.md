@@ -33,6 +33,7 @@ description: صندوق أدوات ذيبان المجانية المجرَّب�
 | أندرويد (كود المصدر) | `bash scripts/mobsf.sh DIR` (mobsfscan 0.4.5) | ✅ يعمل؛ جُرّب على مقتطف صغير فأعطى INFO فقط، فاختبره على مشروع حقيقي | الحاوية |
 | تقرير تطبيق APK كامل | MobSF (انظر أدوات الخادم) | ⏳ | الخادم |
 | ثغرات الكود | `bash scripts/security.sh DIR` | ✅ | الحاوية |
+| **الجداول المدرسية وتعارض الحصص (إلزامي لكل مهمة جدولة)** | `bash timetable/setup.sh` ثم `~/.dheeb/venv-ortools/bin/python timetable/engine.py solve in.json (أو check / diagnose)` (OR-Tools CP-SAT 9.15.6755). التفاصيل `timetable/README.md`، وبرومبت الدمج في مشروع `timetable/PROJECT_PROMPT.md` | ✅ 13 اختبارًا | الحاوية / الخادم / المشروع |
 
 التنزيل الثنائي: `https://github.com/<org>/<repo>/releases/download/<الإصدار>/...` يعمل عبر الوكيل، لكن `releases/latest` وapi.github.com محجوبان؛ **ثبّت الإصدار دائمًا**.
 
