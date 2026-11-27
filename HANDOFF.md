@@ -9,6 +9,7 @@
 
 ## حالة اليوم
 - الأدوات: صندوق dheeban-toolbox فيه الآن Unlighthouse وLHCI وknip وsize-limit وfonttools وmobsfscan وفحص الترويسات والأحجام والروابط (commit e465eed). المرحلة 2 مؤجلة: lychee وGitleaks وhadolint وk6 (منع المصنِّف تنزيل الثنائيات).
+- 2026-11-27: المرحلة 2 (Gitleaks وlychee وhadolint وk6) مجرَّبة في GitHub Actions بموافقة المالك؛ انظر dheeban-toolbox.
 - إضافات اقتُرحت للتفعيل في حساب claude.ai ولم يتأكد تفعيلها (ListPlugins أعاد فارغًا): frontend-design، Design، Superpowers، Claude Security.
 - فحص المواقع الثلاثة: الفرع reports/sites-2026-11-26 (report.md وprompt.md لكل من jdtna.sa وaykdmh.com وtrbhh.sa). أُرسلت البرومبتات للمالك.
 - مواقع المالك محجوبة من بيئة Default؛ الفحص الحي يعمل من بيئة aykdmh.

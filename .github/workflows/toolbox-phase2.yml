@@ -29,10 +29,10 @@ jobs:
           echo "hadolint وجد المشاكل المتوقعة"
       - name: lychee على ملفات Markdown (بلا شبكة)
         continue-on-error: true
-        run: lychee --no-progress --offline --include-fragments '**/*.md'
-      - name: lychee على رابط خارجي
+        run: find . -name '*.md' -not -path './.git/*' -print0 | xargs -0 lychee --no-progress --offline
+      - name: lychee على روابط README الخارجية
         continue-on-error: true
-        run: lychee --no-progress https://example.com
+        run: lychee --no-progress --max-concurrency 4 README.md skills/dheeban-toolbox/SKILL.md
       - name: k6 على خادم محلي
         run: |
           python3 -m http.server 8080 --bind 127.0.0.1 >/dev/null 2>&1 &
